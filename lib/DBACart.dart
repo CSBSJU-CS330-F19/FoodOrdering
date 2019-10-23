@@ -25,10 +25,10 @@ class DBACart extends StatelessWidget {
             return new ListView(
               children:
                   snapshot.data.documents.map((DocumentSnapshot document) {
-                return new CustomCartCard(
-                  title: document['names'],
-                  price: document['prices'],
-                );
+                    return new CustomCartCard(
+                      title: document['names'],
+                      price: document['prices'],
+                    );
               }).toList(),
             );
         }
@@ -47,10 +47,14 @@ class CustomCartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ListTile> list = new List<ListTile>();
-
-    return ListTile(
-        title: Text(title.toString()), subtitle: Text(price.toString()));
+    List<Widget> list = new List<Widget>();
+    for (var j = 0; j < title.length; j++) {
+      list.add(new Text("  " + title[j] + "\n      " + price[j].toString() + "\n"));
+    }
+     return new Column(
+         crossAxisAlignment: CrossAxisAlignment.start,
+         children: list
+     );
   }
 }
 
