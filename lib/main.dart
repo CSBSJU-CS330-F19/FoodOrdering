@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/Account.dart';
 import 'package:mcglynns_food2go/Cart.dart';
@@ -97,3 +98,19 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+/*
+Punch field
+For (each item in cart (order)) {
+If (order.contains(entree,side,fountainBeverage) || (order.contains(entree,side) || (order.contains(entree) {
+  costInPunches = punch + 1
+  costInFlex = entree.cost + side.cost + fountainBeverage.cost
+  return costInPunches & costInFlex
+}
+  Flex Field
+
+  If (order.contains(entree,side,fountainBeverage) || (order.contains(entree,side) || (order.contains(entree) {
+  costInFlex = entree.cost + side.cost + fountainBeverage.cost
+  return costInFlex
+}
+
+ */
