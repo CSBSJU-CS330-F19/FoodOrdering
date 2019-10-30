@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                                           title: result["fname"] +
                                               "'s Tasks",
                                           uid: currentUser.user.uid,
+                                          emp: result['employee']
                                         ))))
                                 .catchError((err) => print(err)))
                                 .catchError((err) => print(err));

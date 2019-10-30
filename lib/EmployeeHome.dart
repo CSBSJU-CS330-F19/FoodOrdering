@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/Account.dart';
 import 'package:mcglynns_food2go/Cart.dart';
 import 'package:mcglynns_food2go/menu/menuHome.dart';
-import 'package:mcglynns_food2go/EmployeeHome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.emp, this.uid, this.title}) : super(key: key);
+class EmployeeHomePage extends StatefulWidget {
+  EmployeeHomePage({Key key, this.title, this.uid}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -18,34 +16,15 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String uid;
-  final bool emp;
   final String title;
+  final String uid;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState(emp:this.emp, uid:this.uid, title:this.title);
+  _EmployeeHomePageState createState() => _EmployeeHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState({this.emp, this.uid, this.title});
-  final String uid;
-  final bool emp;
-  final String title;
-  Widget _buildChild() {
-    if (emp) {
-      return new ListTile(
-          title: new Text('Employee Mode'),
-          onTap: () {
-            Navigator.of(context).pop();
-            Navigator.push(context, new MaterialPageRoute(
-                builder: (BuildContext context) => new EmployeeHomePage()));
-          }
-      );
-  }
-    else {
-      return new Container();
-    }
-  }
+class _EmployeeHomePageState extends State<EmployeeHomePage> {
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -54,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: new Text('McGlynns Food2Go')
       ),
       body: Center(
-          child: new Text('I am the homepage')
+          child: new Text('Welcome to Employee Mode!')
       ),
       drawer: new Drawer(
         child: ListView(
@@ -96,7 +75,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 }
             ),
-            _buildChild(),
             new ListTile(
               title: new Text('Logout'),
               onTap: () {

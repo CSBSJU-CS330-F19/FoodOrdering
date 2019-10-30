@@ -254,3 +254,5 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/android,flutter,androidstudio
+ios/Flutter/flutter_export_environment.sh
+pubspec.lock

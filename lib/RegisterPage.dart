@@ -119,6 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 "uid": currentUser.user.uid,
                                 "fname": firstNameInputController.text,
                                 "surname": lastNameInputController.text,
+                                "employee": false,
                                 "email": emailInputController.text,
                               })
                                   .then((result) => {
@@ -131,6 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                               .text +
                                               "'s Tasks",
                                           uid: currentUser.user.uid,
+                                          emp: false
                                         )),
                                         (_) => false),
                                 firstNameInputController.clear(),
