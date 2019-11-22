@@ -22,6 +22,8 @@ class _MenuHomeState extends State<MenuHome> {
         length: 5,
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.red,
+
             bottom: TabBar(
               tabs: [
                 Tab(icon: Icon(FontAwesomeIcons.gulp)),

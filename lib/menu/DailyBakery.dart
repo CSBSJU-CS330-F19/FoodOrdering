@@ -12,6 +12,7 @@ class _DailyBakeryState extends State<DailyBakery> {
     return Scaffold(
       appBar: AppBar(
         title: new Text('Daily Bakery'),
+        backgroundColor: Colors.red,
       ),
       body: Center(
         child: Container(

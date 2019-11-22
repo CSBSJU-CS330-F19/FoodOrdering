@@ -12,6 +12,7 @@ class _GrabAndGoState extends State<GrabAndGo> {
     return Scaffold(
       appBar: AppBar(
         title: new Text('Grab & Go'),
+        backgroundColor: Colors.red,
       ),
       body: Center(
         child: Container(

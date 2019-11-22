@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/DBA.dart';
+import 'package:mcglynns_food2go/User.dart';
+import 'package:mcglynns_food2go/Home.dart';
 
 class CustomCard extends StatelessWidget {
-  CustomCard({@required this.title, this.price});
+  CustomCard({@required this.title, this.price, this.uid});
 
+  final uid;
   final title;
   final price;
 
   final dba = new DBA(collection: null);
+
+  User myUser = getUser();
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +25,12 @@ class CustomCard extends StatelessWidget {
                 ButtonTheme.bar(
                     child: ButtonBar(children: <Widget>[
                   FlatButton(
-                    child: const Text('Add to Cart'),
+                    child: Text('Add to Cart'),
+
+                    color: Colors.red,
+                    textColor: Colors.white,
                     onPressed: () {
-                      dba.createRecord('juser', [title], [price]);
+                      dba.createRecord(myUser.uid, [title], [price]);
                     },
                   ),
                 ]))

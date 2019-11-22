@@ -12,6 +12,7 @@ class _DeliDailyState extends State<DeliDaily> {
     return Scaffold(
       appBar: AppBar(
         title: new Text('Deli Daily'),
+        backgroundColor: Colors.red,
       ),
       body: Center(
         child: Container(

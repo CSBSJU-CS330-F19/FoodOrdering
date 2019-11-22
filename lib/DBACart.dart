@@ -3,9 +3,14 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/CustomCard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mcglynns_food2go/Home.dart';
 import 'dart:async';
+import 'package:mcglynns_food2go/User.dart';
 
 class DBACart extends StatelessWidget {
+
+
+
   DBACart({@required this.collection});
   final collection;
 
@@ -40,35 +45,27 @@ class DBACart extends StatelessWidget {
 class CustomCartCard extends StatelessWidget {
   CustomCartCard({@required this.title, this.price});
 
-  var title;
-  var price;
+  final title;
+  final price;
 
   final dba = new DBACart(collection: null);
+  var cartTotal = 0.0;
+
+
+  User myUser = getUser();
 
   @override
   Widget build(BuildContext context) {
     List<Widget> list = new List<Widget>();
     for (var j = 0; j < title.length; j++) {
       list.add(new Text("  " + title[j] + "\n      " + price[j].toString() + "\n"));
+      cartTotal = cartTotal + price[j];
     }
+    list.add(new Text("Cart Total : \$" + cartTotal.toString()));
+
      return new Column(
          crossAxisAlignment: CrossAxisAlignment.start,
          children: list
      );
   }
 }
-
-/*
-
-                    CustomCartCard custCartCard;
-
-                for(int i = 0; i < document['names'].length ; i++){
-                  custCartCard = new CustomCartCard(
-                    title: document['names'].elementAt(i),
-                    price: document['prices'].elementAt(i).toString(),
-                  );
-
-                  return custCartCard;
-                }
-              }).toList(),
- */
