@@ -14,6 +14,8 @@ class EmployeeMenuCard extends StatelessWidget {
 
   User myUser = getUser();
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -25,11 +27,43 @@ class EmployeeMenuCard extends StatelessWidget {
                 ButtonTheme.bar(
                     child: ButtonBar(children: <Widget>[
                   FlatButton(
-                    child: Text(title),
+                    child: Text('Edit item'),
                     color: Colors.red,
                     textColor: Colors.white,
                     onPressed: () {
-
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              content: Form(
+                                key: _formKey,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text("hahaha"),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: TextFormField(),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: RaisedButton(
+                                        child: Text("Submit"),
+                                        onPressed: () {
+                                          if (_formKey.currentState.validate()) {
+                                            _formKey.currentState.save();
+                                          }
+                                        },
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
                     },
                   ),
                       FlatButton(
@@ -37,7 +71,7 @@ class EmployeeMenuCard extends StatelessWidget {
                         color: Colors.red,
                         textColor: Colors.white,
                         onPressed: () {
-                          debugPrint("delete");
+
                         },
                       ),
                 ]))
