@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/DBA.dart';
-import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/Home.dart';
+import 'package:mcglynns_food2go/User.dart';
 
 class CustomCard extends StatelessWidget {
   CustomCard({@required this.title, this.price, this.uid});
