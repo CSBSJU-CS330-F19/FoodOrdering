@@ -17,6 +17,7 @@ class User
     this.surname = ds['surname'];
   });
   }
+
   String getUID(){
     return this.uid;
   }

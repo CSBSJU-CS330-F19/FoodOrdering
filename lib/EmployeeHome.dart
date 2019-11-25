@@ -1,9 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/EmployeeAccount.dart';
 import 'package:mcglynns_food2go/Orders.dart';
-import 'package:mcglynns_food2go/employeemenu/EmployeeMenuHome.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mcglynns_food2go/User.dart';
+import 'package:mcglynns_food2go/employeemenu/EmployeeMenuHome.dart';
 
 class EmployeeHomePage extends StatefulWidget {
 
