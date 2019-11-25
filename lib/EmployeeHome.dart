@@ -22,7 +22,7 @@ class _EmployeeHomePageState extends State<EmployeeHomePage> {
     return new Scaffold(
       appBar: new AppBar(
           backgroundColor: Colors.red,
-          title: new Text('McGlynns Food2Go')
+          title: new Text('McGlynns Food2Go - EMPLOYEE')
       ),
       body: Center(
           child: new Text('Welcome to Employee Mode!')

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mcglynns_food2go/ResetUserPassword.dart';
 import 'Home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -95,6 +96,18 @@ class _LoginPageState extends State<LoginPage> {
                                 .catchError((err) => print(err));
                           }
                         },
+                      ),
+                      RaisedButton(
+                        child: Text("Reset user password"),
+                        color: Theme.of(context).primaryColor,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (BuildContext context) => new ResetUserPassword()));
+                          }
                       ),
                       Text("Don't have an account yet?"),
                       FlatButton(

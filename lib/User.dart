@@ -37,17 +37,17 @@ class User
     return this.fname + " " + this.surname;
   }
   void setFName(String name){
-    doc.setData({"fname" : name});
+    doc.updateData({"fname" : name});
   }
   void setSurName(String name){
 
-    doc.setData({"surname" : name});
+    doc.updateData({"surname" : name});
   }
   void setEmployee(bool emp){
-     doc.setData({"employee" : emp});
+     doc.updateData({"employee" : emp});
   }
   void setEmail(String newEmail){
-    doc.setData({"email" : newEmail});
+    doc.updateData({"email" : newEmail});
   }
 
   getUser() async {

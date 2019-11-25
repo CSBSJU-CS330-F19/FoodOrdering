@@ -4,6 +4,7 @@ import 'package:mcglynns_food2go/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mcglynns_food2go/Home.dart';
 
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 class Account extends StatefulWidget {
   @override
@@ -42,13 +43,15 @@ class _AccountState extends State<Account> {
             decoration: InputDecoration(
                 labelText: 'Email*', hintText: myUser.getEmail()),
           ),
-          TextFormField(
-            decoration: InputDecoration(
-                labelText: 'Password*', hintText: "********"),
+          FlatButton(
+            child: Text('Reset Password'),
+
+            color: Colors.red,
+            textColor: Colors.white,
+            onPressed: () {
+             resetPassword(myUser.getEmail());
+            },
           ),
-          TextFormField(
-              decoration: InputDecoration(
-                  labelText: 'Confirm Password*', hintText: "********"))
         ]
     );
   }
@@ -140,4 +143,8 @@ class _AccountState extends State<Account> {
         )
     );
   }
+}
+
+Future<void> resetPassword(String email) async {
+  await _firebaseAuth.sendPasswordResetEmail(email: email);
 }

@@ -37,7 +37,7 @@ class EmployeeMenuCard extends StatelessWidget {
                         color: Colors.red,
                         textColor: Colors.white,
                         onPressed: () {
-
+                          debugPrint("delete");
                         },
                       ),
                 ]))
