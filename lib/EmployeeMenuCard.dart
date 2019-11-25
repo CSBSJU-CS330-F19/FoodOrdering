@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/EmployeeDBA.dart';
-import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/Home.dart';
+import 'package:mcglynns_food2go/User.dart';
 
 class EmployeeMenuCard extends StatelessWidget {
   EmployeeMenuCard({@required this.title, this.price, this.uid});

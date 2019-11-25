@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mcglynns_food2go/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/Home.dart';
+import 'package:mcglynns_food2go/User.dart';
 
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 

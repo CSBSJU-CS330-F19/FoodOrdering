@@ -1,10 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/Account.dart';
 import 'package:mcglynns_food2go/Cart.dart';
-import 'package:mcglynns_food2go/menu/menuHome.dart';
 import 'package:mcglynns_food2go/EmployeeHome.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mcglynns_food2go/User.dart';
+import 'package:mcglynns_food2go/menu/menuHome.dart';
 User _currentUser;
 class MyHomePage extends StatefulWidget {
   String uid;

@@ -1,15 +1,13 @@
 
 
-import 'package:flutter/material.dart';
+import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mcglynns_food2go/Home.dart';
-import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/User.dart';
+import 'package:mcglynns_food2go/Home.dart';
 
 class DBACart extends StatelessWidget {
-  User myUser = getUser();
-
   User myUser = getUser();
 
   @override
@@ -23,12 +21,35 @@ class DBACart extends StatelessWidget {
           case ConnectionState.waiting:
             return new Text('Loading...');
           default:
-            return new CustomCartCard(
-              title: snapshot.data['names'],
-              price: snapshot.data['prices'],
-            );
+            if (snapshot.data['names'] == null || snapshot.data['prices'] == null) {
+              return new TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "No items in cart"
+                )
+              );
+            }
+            else if (snapshot.data['names'].length != snapshot.data['prices'].length) {
+              return new TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Uneven number of items and prices"
+                  )
+              );
+            }
+            else {
+              return new CustomCartCard(
+                title: snapshot.data['names'],
+                price: snapshot.data['prices'],
+              );
+            }
         }});
     }
+
+  void deleteCart(){
+    Firestore.instance.collection("Cart").
+    document(myUser.getUID()).setData({"names": null, "prices": null});
+  }
 }
 
 
@@ -45,7 +66,6 @@ class CustomCartCard extends StatelessWidget {
 
 
 
-
   @override
   Widget build(BuildContext context) {
     List<Widget> list = new List<Widget>();
@@ -53,11 +73,58 @@ class CustomCartCard extends StatelessWidget {
       list.add(new Text("  " + title[j] + "\n      " + price[j].toString() + "\n"));
       cartTotal = cartTotal + price[j];
     }
-    list.add(new Text("Cart Total : \$" + cartTotal.toString()));
+    list.add(new Text("------------------------------\n "
+        "Cart Total : \$" + cartTotal.toString()));
 
      return new Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-         children: list
+       children: [
+         Expanded(
+           child: ListView(
+            children: list,
+           )
+    ),
+      FlatButton(
+      child: Text('Checkout'),
+
+      color: Colors.red,
+      textColor: Colors.white,
+        onPressed: () {
+              showDialog(context: context,
+                  builder: (context) => new AlertDialog(
+                title: Text("Place Order?"),
+                content: const Text("This will send your cart information to McGlynn's"),
+                actions: <Widget>[
+                  FlatButton(
+                    child: const Text('Cancel'),
+                    onPressed: () {
+                      Navigator.pop(context, DBACart());
+                    },
+                  ),
+                  FlatButton(
+                    child: const Text('Send Order'),
+                    onPressed: () {showDialog(context:context,
+                      builder: (context) => new AlertDialog(
+                        title: Text("Order Placed"),
+                        content: const Text("Order had been sent to McGlynn's"),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: const Text("OK"),
+                            onPressed: () {
+                              Navigator.pop(context, DBACart().deleteCart());
+                              Navigator.pop(context, DBACart());
+                            }
+                          )
+                          ]
+                      )
+                    );
+                    }
+                  )
+                ]
+              )
+              );
+             },
+           ),
+        ]
      );
   }
 }

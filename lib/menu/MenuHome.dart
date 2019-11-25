@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcglynns_food2go/CustomCard.dart';
 import 'package:mcglynns_food2go/menu/DeliDaily.dart';
 import 'package:mcglynns_food2go/menu/GrabAndGo.dart';
 import 'package:mcglynns_food2go/menu/GrillDaily.dart';
+
 import './Beverages.dart';
 import './DailyBakery.dart';
 
