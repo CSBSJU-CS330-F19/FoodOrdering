@@ -10,8 +10,6 @@ import 'package:mcglynns_food2go/User.dart';
 class DBACart extends StatelessWidget {
   User myUser = getUser();
 
-  User myUser = getUser();
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
