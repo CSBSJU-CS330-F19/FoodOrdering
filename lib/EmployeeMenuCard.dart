@@ -5,7 +5,7 @@ import 'package:mcglynns_food2go/Home.dart';
 
 class EmployeeMenuCard extends StatelessWidget {
   EmployeeMenuCard({@required this.title, this.price, this.uid});
-
+ final _formKey = GlobalKey<FormState>();
   final uid;
   final title;
   final price;
@@ -22,13 +22,46 @@ class EmployeeMenuCard extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text(title),
-                ButtonTheme.bar(
-                    child: ButtonBar(children: <Widget>[
+                ButtonBar(
+                    children: <Widget> [
                   FlatButton(
-                    child: Text(title),
+                    child: Text("Edit " + title),
                     color: Colors.red,
                     textColor: Colors.white,
                     onPressed: () {
+                      showDialog(context: context,
+                        builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Form(
+                            key: _formKey,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget> [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: TextFormField(),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: TextFormField(),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: RaisedButton(
+                              child: Text("Submit"),
+                              onPressed: () {
+                                if(_formKey.currentState.validate()){
+                                  _formKey.currentState.save();
+                                }
+                              },
+                            ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                        });
+
 
                     },
                   ),
@@ -40,7 +73,7 @@ class EmployeeMenuCard extends StatelessWidget {
                           debugPrint("delete");
                         },
                       ),
-                ]))
+                ])
               ],
             )));
   }
