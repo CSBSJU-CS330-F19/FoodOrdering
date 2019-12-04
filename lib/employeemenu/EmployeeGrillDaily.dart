@@ -12,7 +12,7 @@ class _EmployeeGrillDailyState extends State<EmployeeGrillDaily> {
     return Scaffold(
       appBar: AppBar(
         title: new Text('Grill Daily'),
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.red,
       ),
       body: Center(
         child: Container(

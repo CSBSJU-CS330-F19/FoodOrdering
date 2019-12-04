@@ -28,18 +28,16 @@ class EmployeeMenuCard extends StatelessWidget {
                     child: Text(title),
                     color: Colors.red,
                     textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                  FlatButton(
+                    child: Text('Remove item'),
+                    color: Colors.red,
+                    textColor: Colors.white,
                     onPressed: () {
-
+                      debugPrint("delete");
                     },
                   ),
-                      FlatButton(
-                        child: Text('Remove item'),
-                        color: Colors.red,
-                        textColor: Colors.white,
-                        onPressed: () {
-                          debugPrint("delete");
-                        },
-                      ),
                 ]))
               ],
             )));

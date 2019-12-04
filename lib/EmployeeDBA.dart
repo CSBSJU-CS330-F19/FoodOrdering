@@ -5,18 +5,14 @@ import 'package:mcglynns_food2go/EmployeeMenuCard.dart';
 import 'package:mcglynns_food2go/Home.dart';
 import 'package:mcglynns_food2go/User.dart';
 
-
 User loggedInUser = getUser();
 
 final databaseReference = Firestore.instance;
 DocumentReference docRef = databaseReference.collection('Cart').document('UID');
 
-
 class EmployeeDBA extends StatelessWidget {
   EmployeeDBA({@required this.collection});
   final collection;
-
-
 
   @override
   Widget build(BuildContext context) {

@@ -26,7 +26,6 @@ class CustomCard extends StatelessWidget {
                     child: ButtonBar(children: <Widget>[
                   FlatButton(
                     child: Text('Add to Cart'),
-
                     color: Colors.red,
                     textColor: Colors.white,
                     onPressed: () {

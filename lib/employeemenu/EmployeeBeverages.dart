@@ -12,7 +12,7 @@ class _EmployeeBeveragesState extends State<EmployeeBeverages> {
     return Scaffold(
       appBar: AppBar(
         title: new Text('Beverages'),
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.red,
       ),
       body: Center(
         child: Container(

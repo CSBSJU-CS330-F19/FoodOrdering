@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'Home.dart';
 
-class SplashPage extends StatefulWidget{
+class SplashPage extends StatefulWidget {
   SplashPage({Key key}) : super(key: key);
 
   @override
@@ -17,29 +17,30 @@ class _SplashPageState extends State<SplashPage> {
     FirebaseAuth.instance
         .currentUser()
         .then((currentUser) => {
-      if (currentUser == null)
-        {Navigator.pushReplacementNamed(context, "/login")}
-      else
-        {
-          Firestore.instance
-              .collection("users")
-              .document(currentUser.uid)
-              .get()
-              .then((DocumentSnapshot result) =>
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MyHomePage(
-                        currentUser.uid,
-                      ))))
-              .catchError((err) => print(err))
-        }
-    })
+              if (currentUser == null)
+                {Navigator.pushReplacementNamed(context, "/login")}
+              else
+                {
+                  Firestore.instance
+                      .collection("users")
+                      .document(currentUser.uid)
+                      .get()
+                      .then((DocumentSnapshot result) =>
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyHomePage(
+                                        currentUser.uid,
+                                      ))))
+                      .catchError((err) => print(err))
+                }
+            })
         .catchError((err) => print(err));
     super.initState();
   }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Container(
