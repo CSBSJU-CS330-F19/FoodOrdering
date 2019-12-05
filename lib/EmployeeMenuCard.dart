@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mcglynns_food2go/EmployeeDBA.dart';
-import 'package:mcglynns_food2go/Home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Emp extends StatefulWidget{
@@ -25,7 +23,6 @@ class EmployeeMenuCard extends State<Emp> {
   final price;
   final inStock;
 
-  User myUser = getUser();
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +38,11 @@ class EmployeeMenuCard extends State<Emp> {
                     child: Text("Edit " + title),
                     color: Colors.red,
                     textColor: Colors.white,
-                    onPressed: () {},
-                  ),
-                  FlatButton(
-                    child: Text('Remove item'),
-                    color: Colors.red,
-                    textColor: Colors.white,
                     onPressed: () {
                       showDialog(context: context,
-                        builder: (BuildContext context) {
-                        return MyDialog(doc: doc, col: col, inStock: inStock);
-                        });
-
-
+                          builder: (BuildContext context) {
+                            return MyDialog(doc: doc, col: col, inStock: inStock);
+                          });
                     },
                   ),
                       FlatButton(
@@ -61,7 +50,7 @@ class EmployeeMenuCard extends State<Emp> {
                         color: Colors.red,
                         textColor: Colors.white,
                         onPressed: () {
-                          debugPrint("delete");
+
                         },
                       ),
                 ])
@@ -155,9 +144,6 @@ class _MyDialogState extends State<MyDialog> {
               child: RaisedButton(
                 child: Text("Submit"),
                 onPressed: () {
-                  if(nameController){
-
-                  }
                   if(_formKey.currentState.validate()){
                     print("this is doc: " + doc);
                     Firestore.instance.collection(col).document(doc).updateData({
