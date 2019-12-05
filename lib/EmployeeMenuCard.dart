@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/EmployeeDBA.dart';
-import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/Home.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class Emp extends StatefulWidget{
   Emp({@required this.title, this.price, this.doc, this.col, this.inStock});
@@ -42,7 +43,14 @@ class EmployeeMenuCard extends State<Emp> {
                     child: Text("Edit " + title),
                     color: Colors.red,
                     textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                  FlatButton(
+                    child: Text('Remove item'),
+                    color: Colors.red,
+                    textColor: Colors.white,
                     onPressed: () {
+
                       showDialog(context: context,
                         builder: (BuildContext context) {
                         return MyDialog(doc: doc, col: col, inStock: inStock);
