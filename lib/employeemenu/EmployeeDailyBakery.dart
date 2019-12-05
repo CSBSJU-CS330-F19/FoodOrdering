@@ -17,7 +17,7 @@ class _EmployeeDailyBakeryState extends State<EmployeeDailyBakery> {
       body: Center(
         child: Container(
             padding: const EdgeInsets.all(10.0),
-            child: EmployeeDBA(collection: 'Daily Bakery')),
+            child: EmpDBAState(collection: 'Daily Bakery')),
       ),
     );
   }

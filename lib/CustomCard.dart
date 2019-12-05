@@ -22,8 +22,8 @@ class CustomCard extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text(title + "\n Price: " + price.toString()),
-                ButtonTheme.bar(
-                    child: ButtonBar(children: <Widget>[
+                ButtonBar(
+                  children: <Widget>[
                   FlatButton(
                     child: Text('Add to Cart'),
                     color: Colors.red,
@@ -32,7 +32,7 @@ class CustomCard extends StatelessWidget {
                       dba.createRecord(myUser.uid, [title], [price]);
                     },
                   ),
-                ]))
+                ])
               ],
             )));
   }

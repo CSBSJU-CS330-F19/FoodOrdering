@@ -17,7 +17,7 @@ class _EmployeeGrabAndGoState extends State<EmployeeGrabAndGo> {
       body: Center(
         child: Container(
             padding: const EdgeInsets.all(10.0),
-            child: EmployeeDBA(collection: 'Grab & Go')),
+            child: EmpDBAState(collection: 'Grab & Go')),
       ),
     );
   }
