@@ -17,7 +17,9 @@ class EmpDBAState extends StatefulWidget{
   }
 }
 
+
 class EmployeeDBA extends State<EmpDBAState> {
+
   EmployeeDBA({@required this.collection});
   final collection;
 
