@@ -1,18 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/CustomCard.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mcglynns_food2go/Home.dart';
 import 'package:mcglynns_food2go/User.dart';
 
-
 User loggedInUser = getUser();
-
-
 
 class DeliDBA extends StatelessWidget {
   DeliDBA();
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,7 @@ class DeliDBA extends StatelessWidget {
           default:
             return new ListView(
               children:
-              snapshot.data.documents.map((DocumentSnapshot document) {
+                  snapshot.data.documents.map((DocumentSnapshot document) {
                 return new CustomDeliCard(
                   title: document['name'],
                   price: document['types'],
@@ -39,28 +35,24 @@ class DeliDBA extends StatelessWidget {
   }
 }
 
-  class CustomDeliCard extends StatelessWidget {
+class CustomDeliCard extends StatelessWidget {
   CustomDeliCard({@required this.title, this.price, this.uid});
 
   final uid;
   final title;
   final price;
 
-
-
   User myUser = getUser();
 
   @override
   Widget build(BuildContext context) {
-  return Card(
-  child: Container(
-  padding: const EdgeInsets.only(top: 5.0),
-  child: Column(
-  children: <Widget>[
-  Text(title + "\n Types: " + price.toString()),
-  ],
-  )));
+    return Card(
+        child: Container(
+            padding: const EdgeInsets.only(top: 5.0),
+            child: Column(
+              children: <Widget>[
+                Text(title + "\n Types: " + price.toString()),
+              ],
+            )));
   }
-  }
-
-
+}

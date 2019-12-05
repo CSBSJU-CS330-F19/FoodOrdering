@@ -1,22 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/CustomCard.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mcglynns_food2go/Home.dart';
 import 'package:mcglynns_food2go/User.dart';
-
 
 User loggedInUser = getUser();
 
 final databaseReference = Firestore.instance;
 DocumentReference docRef = databaseReference.collection('Cart').document('UID');
 
-
 class DBA extends StatelessWidget {
   DBA({@required this.collection});
   final collection;
-
-
 
   @override
   Widget build(BuildContext context) {

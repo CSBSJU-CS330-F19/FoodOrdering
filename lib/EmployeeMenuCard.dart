@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/EmployeeDBA.dart';
-import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/Home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -40,6 +39,12 @@ class EmployeeMenuCard extends State<Emp> {
                     children: <Widget> [
                   FlatButton(
                     child: Text("Edit " + title),
+                    color: Colors.red,
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                  FlatButton(
+                    child: Text('Remove item'),
                     color: Colors.red,
                     textColor: Colors.white,
                     onPressed: () {

@@ -1,10 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/EmployeeMenuCard.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mcglynns_food2go/Home.dart';
 import 'package:mcglynns_food2go/User.dart';
-
 
 User loggedInUser = getUser();
 
@@ -22,8 +21,6 @@ class EmpDBAState extends StatefulWidget{
 class EmployeeDBA extends State<EmpDBAState> {
   EmployeeDBA({@required this.collection});
   final collection;
-
-
 
   @override
   Widget build(BuildContext context) {
