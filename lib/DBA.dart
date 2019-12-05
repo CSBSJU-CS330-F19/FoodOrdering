@@ -30,6 +30,7 @@ class DBA extends StatelessWidget {
                 return new CustomCard(
                   title: document['name'],
                   price: document['price'],
+                  inStock: document['inStock'],
                 );
               }).toList(),
             );
