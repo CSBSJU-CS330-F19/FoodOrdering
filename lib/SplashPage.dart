@@ -21,17 +21,12 @@ class _SplashPageState extends State<SplashPage> {
                 {Navigator.pushReplacementNamed(context, "/login")}
               else
                 {
-                  Firestore.instance
-                      .collection("users")
-                      .document(currentUser.uid)
-                      .get()
-                      .then((DocumentSnapshot result) =>
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => MyHomePage(
                                         currentUser.uid,
-                                      ))))
+                                      )))
                       .catchError((err) => print(err))
                 }
             })
