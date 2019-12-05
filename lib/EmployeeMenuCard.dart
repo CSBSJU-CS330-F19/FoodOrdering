@@ -50,18 +50,10 @@ class EmployeeMenuCard extends State<Emp> {
 
                       showDialog(context: context,
                           builder: (BuildContext context) {
-                            return MyDialog(doc: doc, col: col, inStock: inStock);
+                            return MyDialog(title: title, price: price, doc: doc, col: col, inStock: inStock);
                           });
                     },
                   ),
-                      FlatButton(
-                        child: Text('Remove item'),
-                        color: Colors.red,
-                        textColor: Colors.white,
-                        onPressed: () {
-
-                        },
-                      ),
                 ])
               ],
             )));
@@ -69,18 +61,22 @@ class EmployeeMenuCard extends State<Emp> {
 }
 
 class MyDialog extends StatefulWidget{
-  MyDialog({@required this.doc, this.col, this.inStock});
+  MyDialog({@required this.title, this.price, this.doc, this.col, this.inStock});
+  final title;
+  final price;
   final col;
   final doc;
   final inStock;
 
 
   @override
-  _MyDialogState createState() => new _MyDialogState(doc: doc, col: col, inStock: inStock);
+  _MyDialogState createState() => new _MyDialogState(title: title, price: price, doc: doc, col: col, inStock: inStock);
 }
 
 class _MyDialogState extends State<MyDialog> {
-  _MyDialogState({@required this.doc, this.col, this.inStock});
+  _MyDialogState({@required this.title, this.price, this.doc, this.col, this.inStock});
+  final title;
+  final price;
   final doc;
   final col;
   bool inStock;
@@ -154,12 +150,43 @@ class _MyDialogState extends State<MyDialog> {
                 child: Text("Submit"),
                 onPressed: () {
                   if(_formKey.currentState.validate()){
-                    print("this is doc: " + doc);
-                    Firestore.instance.collection(col).document(doc).updateData({
-                      "name": nameController.text,
-                      "price": int.parse(priceController.text),
-                      "inStock": inStock
-                    });
+                    if(nameController.text.isNotEmpty && priceController.text.isNotEmpty) {
+                      Firestore.instance.collection(col)
+                          .document(doc)
+                          .updateData({
+                        "name": nameController.text,
+                        "price": int.parse(priceController.text),
+                        "inStock": inStock
+                      });
+                    }
+                    else if(nameController.text.isEmpty && priceController.text.isNotEmpty){
+                      Firestore.instance.collection(col)
+                          .document(doc)
+                          .updateData({
+                        "name": title,
+                        "price": int.parse(priceController.text),
+                        "inStock": inStock
+                      });
+
+                    }
+                    else if (nameController.text.isNotEmpty && priceController.text.isEmpty){
+                      Firestore.instance.collection(col)
+                          .document(doc)
+                          .updateData({
+                        "name": nameController.text,
+                        "price": price,
+                        "inStock": inStock
+                      });
+                    }
+                    else{
+                      Firestore.instance.collection(col)
+                          .document(doc)
+                          .updateData({
+                        "name": title,
+                        "price": price,
+                        "inStock": inStock
+                      });
+                    }
                     Navigator.pop(context);
 
                   }
