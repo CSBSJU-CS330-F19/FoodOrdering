@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/EmployeeDBA.dart';
-import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/Home.dart';
+import 'package:mcglynns_food2go/User.dart';
 
 class EmployeeMenuCard extends StatelessWidget {
   EmployeeMenuCard({@required this.title, this.price, this.uid});
@@ -28,18 +28,16 @@ class EmployeeMenuCard extends StatelessWidget {
                     child: Text(title),
                     color: Colors.red,
                     textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                  FlatButton(
+                    child: Text('Remove item'),
+                    color: Colors.red,
+                    textColor: Colors.white,
                     onPressed: () {
-
+                      debugPrint("delete");
                     },
                   ),
-                      FlatButton(
-                        child: Text('Remove item'),
-                        color: Colors.red,
-                        textColor: Colors.white,
-                        onPressed: () {
-                          debugPrint("delete");
-                        },
-                      ),
                 ]))
               ],
             )));
