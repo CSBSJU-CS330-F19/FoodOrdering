@@ -2,15 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/EmployeeDBA.dart';
 import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/Home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class EmployeeMenuCard extends StatelessWidget {
-  EmployeeMenuCard({@required this.title, this.price, this.uid});
- final _formKey = GlobalKey<FormState>();
-  final uid;
+class Emp extends StatefulWidget{
+  Emp({@required this.title, this.price, this.doc, this.col, this.inStock});
+  final doc;
   final title;
   final price;
+  final col;
+  final inStock;
+  @override
+  EmployeeMenuCard createState() {
+   return EmployeeMenuCard(title: title, price: price, doc: doc, col: col, inStock: inStock);
+  }
+}
 
-  final dba = new EmployeeDBA(collection: null);
+class EmployeeMenuCard extends State<Emp> {
+  EmployeeMenuCard({@required this.title, this.price, this.doc, this.col, this.inStock});
+
+  final col;
+  final doc;
+  final title;
+  final price;
+  final inStock;
 
   User myUser = getUser();
 
@@ -31,35 +45,7 @@ class EmployeeMenuCard extends StatelessWidget {
                     onPressed: () {
                       showDialog(context: context,
                         builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: Form(
-                            key: _formKey,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget> [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: TextFormField(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: TextFormField(),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: RaisedButton(
-                              child: Text("Submit"),
-                              onPressed: () {
-                                if(_formKey.currentState.validate()){
-                                  _formKey.currentState.save();
-                                }
-                              },
-                            ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
+                        return MyDialog(doc: doc, col: col, inStock: inStock);
                         });
 
 
@@ -76,5 +62,113 @@ class EmployeeMenuCard extends StatelessWidget {
                 ])
               ],
             )));
+  }
+}
+
+class MyDialog extends StatefulWidget{
+  MyDialog({@required this.doc, this.col, this.inStock});
+  final col;
+  final doc;
+  final inStock;
+
+
+  @override
+  _MyDialogState createState() => new _MyDialogState(doc: doc, col: col, inStock: inStock);
+}
+
+class _MyDialogState extends State<MyDialog> {
+  _MyDialogState({@required this.doc, this.col, this.inStock});
+  final doc;
+  final col;
+  bool inStock;
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController nameController;
+  TextEditingController priceController;
+
+  @override
+  initState(){
+    nameController = new TextEditingController();
+    priceController = new TextEditingController();
+
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context){
+
+    return AlertDialog(
+
+      content: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+          children: <Widget> [
+            Container(
+              padding: EdgeInsets.all(8.0),
+
+
+              child: TextFormField(
+                controller: nameController,
+                  decoration: InputDecoration(
+                      labelText: 'Enter new name of item'
+                  )
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: priceController,
+                  decoration: InputDecoration(
+                      labelText: 'Enter new price of item'
+                  )
+              ),
+            ),
+            Container(
+                padding: EdgeInsets.all(8.0),
+
+                child: Text("In Stock")
+            ),
+            Container(
+              padding: EdgeInsets.all(8.0),
+             height: 50,
+              child: Switch(
+                value: inStock,
+                onChanged: (bool newValue){
+                  setState((){
+                    inStock = newValue;
+                  });
+                },
+                activeTrackColor: Colors.lightGreenAccent,
+                activeColor: Colors.green,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8.0),
+              height: 50,
+              child: RaisedButton(
+                child: Text("Submit"),
+                onPressed: () {
+                  if(nameController){
+
+                  }
+                  if(_formKey.currentState.validate()){
+                    print("this is doc: " + doc);
+                    Firestore.instance.collection(col).document(doc).updateData({
+                      "name": nameController.text,
+                      "price": int.parse(priceController.text),
+                      "inStock": inStock
+                    });
+                    Navigator.pop(context);
+
+                  }
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
