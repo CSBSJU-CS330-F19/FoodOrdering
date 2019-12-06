@@ -59,7 +59,6 @@ class DeliDBA extends StatelessWidget {
 
 
 
-}
 
 class CustomDeliCard extends StatelessWidget {
   CustomDeliCard({@required this.title, this.price, this.uid});
