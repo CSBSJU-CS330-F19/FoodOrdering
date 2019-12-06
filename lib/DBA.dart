@@ -28,13 +28,9 @@ class DBA extends StatelessWidget {
               children:
                   snapshot.data.documents.map((DocumentSnapshot document) {
                 return new CustomCard(
-                  name: document['name'],
+                  title: document['name'],
                   price: document['price'],
                   inStock: document['inStock'],
-                  customCheese: document['hasCheese'],
-                  customVeg: document['hasVegetables'],
-                  cheese: document['Cheese'],
-                  vegetables: document['Vegetables'],
                 );
               }).toList(),
             );
@@ -44,7 +40,7 @@ class DBA extends StatelessWidget {
   }
 
   void createRecord(
-      String userName, List<String> itemName, List itemPrice, List<bool> itemHasCheese, List<bool> itemHasVeg, List<List<Object>> cheeses, List<List<Object>> vegetables) async {
+      String userName, List<String> itemName, List itemPrice) async {
     databaseReference
         .collection('Cart')
         .document(userName)
@@ -54,26 +50,6 @@ class DBA extends StatelessWidget {
         .collection('Cart')
         .document(userName)
         .updateData({'prices': FieldValue.arrayUnion(itemPrice)});
-
-    databaseReference
-        .collection('Cart')
-        .document(userName)
-        .updateData({'hasCheese': FieldValue.arrayUnion(itemHasCheese)});
-
-    databaseReference
-        .collection('Cart')
-        .document(userName)
-        .updateData({'hasVegetables': FieldValue.arrayUnion(itemHasVeg)});
-
-    databaseReference
-        .collection('Cart')
-        .document(userName)
-        .updateData({'Cheese': FieldValue.arrayUnion(cheeses)});
-
-    databaseReference
-        .collection('Cart')
-        .document(userName)
-        .updateData({'Vegetables': FieldValue.arrayUnion(vegetables)});
   }
 }
 
