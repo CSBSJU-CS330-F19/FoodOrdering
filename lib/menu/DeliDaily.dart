@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mcglynns_food2go/DBA.dart';
 import 'package:mcglynns_food2go/menu/DeliDBA.dart';
 
 class DeliDaily extends StatefulWidget {
@@ -16,7 +15,10 @@ class _DeliDailyState extends State<DeliDaily> {
         backgroundColor: Colors.red,
       ),
       body: Center(
-        child: Container(padding: const EdgeInsets.all(10.0), child: DeliDBA()),
+        child: Container(
+            padding: const EdgeInsets.all(10.0),
+            child: DeliDBA(collection: 'Deli Daily')),
+
       ),
     );
   }
