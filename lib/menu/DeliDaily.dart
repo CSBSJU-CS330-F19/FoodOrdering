@@ -18,6 +18,7 @@ class _DeliDailyState extends State<DeliDaily> {
         child: Container(
             padding: const EdgeInsets.all(10.0),
             child: DeliDBA(collection: 'Deli Daily')),
+
       ),
     );
   }

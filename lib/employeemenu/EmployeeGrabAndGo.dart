@@ -12,12 +12,12 @@ class _EmployeeGrabAndGoState extends State<EmployeeGrabAndGo> {
     return Scaffold(
       appBar: AppBar(
         title: new Text('Grab & Go'),
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.red,
       ),
       body: Center(
         child: Container(
             padding: const EdgeInsets.all(10.0),
-            child: EmployeeDBA(collection: 'Grab & Go')),
+            child: EmpDBAState(collection: 'Grab & Go')),
       ),
     );
   }

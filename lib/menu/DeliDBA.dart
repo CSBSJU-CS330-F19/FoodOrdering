@@ -4,8 +4,8 @@ import 'package:mcglynns_food2go/Home.dart';
 import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/DeliCutomCard.dart';
 
-
 User loggedInUser = getUser();
+
 
 final databaseReference = Firestore.instance;
 DocumentReference docRef = databaseReference.collection('Cart').document('UID');
@@ -14,7 +14,6 @@ DocumentReference docRef = databaseReference.collection('Cart').document('UID');
 class DeliDBA extends StatelessWidget {
   DeliDBA({@required this.collection});
   final collection;
-
 
 
   @override
@@ -29,8 +28,10 @@ class DeliDBA extends StatelessWidget {
           default:
             return new ListView(
               children:
+
               snapshot.data.documents.map((DocumentSnapshot document) {
                 return new DeliCustomCard(
+
                   title: document['name'],
                   price: document['price'],
                 );
@@ -40,6 +41,7 @@ class DeliDBA extends StatelessWidget {
       },
     );
   }
+
 
   void createRecord(
       String userName, List<String> itemName, List itemPrice) async {
@@ -55,4 +57,29 @@ class DeliDBA extends StatelessWidget {
   }
 }
 
+
+
+}
+
+class CustomDeliCard extends StatelessWidget {
+  CustomDeliCard({@required this.title, this.price, this.uid});
+
+  final uid;
+  final title;
+  final price;
+
+  User myUser = getUser();
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        child: Container(
+            padding: const EdgeInsets.only(top: 5.0),
+            child: Column(
+              children: <Widget>[
+                Text(title + "\n Types: " + price.toString()),
+              ],
+            )));
+  }
+}
 

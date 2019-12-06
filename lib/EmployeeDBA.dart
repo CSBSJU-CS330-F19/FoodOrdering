@@ -1,22 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/EmployeeMenuCard.dart';
 import 'package:mcglynns_food2go/Home.dart';
 import 'package:mcglynns_food2go/User.dart';
 
-
 User loggedInUser = getUser();
 
 final databaseReference = Firestore.instance;
 DocumentReference docRef = databaseReference.collection('Cart').document('UID');
+class EmpDBAState extends StatefulWidget{
+  EmpDBAState({@required this.collection});
+  final collection;
+  @override
+  EmployeeDBA createState() {
+    return EmployeeDBA(collection: collection);
+  }
+}
 
 
-class EmployeeDBA extends StatelessWidget {
+class EmployeeDBA extends State<EmpDBAState> {
+
   EmployeeDBA({@required this.collection});
   final collection;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +36,12 @@ class EmployeeDBA extends StatelessWidget {
             return new ListView(
               children:
                   snapshot.data.documents.map((DocumentSnapshot document) {
-                return new EmployeeMenuCard(
+                return new Emp(
                   title: document['name'],
                   price: document['price'],
+                  inStock: document['inStock'],
+                  doc: document.documentID,
+                  col: collection
                 );
               }).toList(),
             );

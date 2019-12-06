@@ -23,8 +23,7 @@ class _EmployeeMenuHomeState extends State<EmployeeMenuHome> {
         length: 5,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.orange,
-
+            backgroundColor: Colors.red,
             bottom: TabBar(
               tabs: [
                 Tab(icon: Icon(FontAwesomeIcons.gulp)),
@@ -34,7 +33,7 @@ class _EmployeeMenuHomeState extends State<EmployeeMenuHome> {
                 Tab(icon: Icon(FontAwesomeIcons.hamburger)),
               ],
             ),
-            title: Text('McGlynns Food2Go'),
+            title: Text('Edit Menu'),
           ),
           body: TabBarView(
             children: [
