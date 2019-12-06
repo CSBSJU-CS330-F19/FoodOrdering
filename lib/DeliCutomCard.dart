@@ -4,13 +4,26 @@ import 'package:mcglynns_food2go/Home.dart';
 import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/DeliOrder.dart';
 
-class DeliCustomCard extends StatelessWidget {
-  DeliCustomCard({@required this.title, this.price, this.uid});
+class DeliCustomCard extends StatefulWidget {
+  DeliCustomCard({@required this.title, this.price, this.uid, this.inStock});
 
   final uid;
   final title;
   final price;
+  final inStock;
 
+  @override
+  _StateDeliCustomCard createState() {
+    return _StateDeliCustomCard(title: title, price: price, uid: uid, inStock: inStock);
+  }
+}
+
+class _StateDeliCustomCard extends State<DeliCustomCard>{
+  _StateDeliCustomCard({@required this.title, this.price, this.uid, this.inStock});
+  final uid;
+  final title;
+  final price;
+  final inStock;
   final dba = new DBA(collection: null);
 
   User myUser = getUser();
@@ -22,12 +35,14 @@ class DeliCustomCard extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5.0),
             child: Column(
               children: <Widget>[
-                Text(title + "\n Price: " + price.toString()),
+                Text(title + "\n Price: " + price.toString() + "\n In Stock: " + inStock.toString()),
                 ButtonTheme.bar(
                     child: ButtonBar(children: <Widget>[
                       FlatButton(
                         child: Text('Customize Order'),
                         onPressed: () {
+                          dba.createRecord(myUser.uid, [title], [price]);
+
                           Navigator.push(context, new MaterialPageRoute(
                               builder: (BuildContext context) => new DeliOrder(product: [
                                 new Product('American cheese', false),

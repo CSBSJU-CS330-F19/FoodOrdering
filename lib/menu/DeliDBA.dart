@@ -34,6 +34,7 @@ class DeliDBA extends StatelessWidget {
 
                   title: document['name'],
                   price: document['price'],
+                  inStock: document['inStock'],
                 );
               }).toList(),
             );
