@@ -11,12 +11,14 @@ class Account extends StatefulWidget {
   @override
   _AccountState createState() => _AccountState();
 }
+User myUser = getUser();
 
 class _AccountState extends State<Account> {
-  User myUser = getUser();
-  TextEditingController nameController = new TextEditingController();
-  TextEditingController surnameController = new TextEditingController();
-  TextEditingController emailController = new TextEditingController();
+
+
+  TextEditingController nameController = new TextEditingController(text: myUser.getFName());
+  TextEditingController surnameController = new TextEditingController(text: myUser.getSurName());
+  TextEditingController emailController = new TextEditingController(text: myUser.getEmail());
 
   // User _currentUser;
   //_AccountState(var uid) {
@@ -66,7 +68,7 @@ class _AccountState extends State<Account> {
           Expanded(
             child: InkWell(
               onTap: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).push();
               },
               child: Container(
                 height: 40.0,
@@ -93,7 +95,7 @@ class _AccountState extends State<Account> {
                 myUser.setFName(nameController.text);
                 myUser.setSurName(surnameController.text);
                 myUser.setEmail(emailController.text);
-                // Navigator.of(context).pop();
+                 Navigator.of(context).pop();
               },
               child: Container(
                 height: 40.0,
