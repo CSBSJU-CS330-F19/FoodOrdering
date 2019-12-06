@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/DBA.dart';
-import 'package:mcglynns_food2go/User.dart';
 import 'package:mcglynns_food2go/Home.dart';
+import 'package:mcglynns_food2go/User.dart';
 
-class CustomCard extends StatelessWidget {
+
+class CustomCard extends StatefulWidget {
   CustomCard({@required this.name, this.price, this.uid, this.customCheese, this.customVeg, this.cheese, this.vegetables});
 
   final uid;
   final name;
   final price;
+  final inStock;
   final customCheese;
   final customVeg;
   List<Object> cheese;
   List<Object> vegetables;
+  
+  @override
+  _StateCustomCard createState() {
+    return _StateCustomCard(title: title, price: price, uid: uid, inStock: inStock);
+  }
+}
 
-
+class _StateCustomCard extends State<CustomCard>{
+  _StateCustomCard({@required this.title, this.price, this.uid, this.inStock});
+  final uid;
+  final title;
+  final price;
+  final inStock;
   final dba = new DBA(collection: null);
 
   User myUser = getUser();
@@ -122,13 +135,13 @@ class CustomCard extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5.0),
             child: Column(
               children: <Widget>[
-                Text(name),
+                Text(title + "\n Price: " + price.toString() + "\n In Stock: " + inStock.toString()),
                 hasTitle(customCheese, "Cheese"),
                 hasColumn(customCheese, cheese, initBoolVals(true, cheese.length), true),
                 hasTitle(customVeg, "Vegetables"),
                 hasColumn(customVeg, vegetables, initBoolVals(false, vegetables.length), false),
-                ButtonTheme.bar(
-                    child: ButtonBar(children: <Widget>[
+                ButtonBar(
+                  children: <Widget>[
                   FlatButton(
                     child: Text('Add to Cart'),
                     color: Colors.red,
@@ -137,7 +150,7 @@ class CustomCard extends StatelessWidget {
                       dba.createRecord(myUser.uid, [name], [price], [customCheese], [customVeg], [cheese], [vegetables]);
                     },
                   ),
-                ]))
+                ])
               ],
             )));
   }

@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:mcglynns_food2go/DBA.dart';
 import 'package:mcglynns_food2go/DBACart.dart';
 
-class Cart extends StatefulWidget {
+class Orders extends StatefulWidget {
   @override
-  _CartState createState() => _CartState();
+  _OrdersState createState() => _OrdersState();
 }
 
-class _CartState extends State<Cart> {
+class _OrdersState extends State<Orders> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Cart'),
+          title: new Text('Orders'),
           backgroundColor: Colors.red,
         ),
         body: Center(
-          child: DBACart(),
+          child: new Text('I am the recieve orders page'),
         ));
   }
 }

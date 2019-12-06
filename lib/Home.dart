@@ -5,7 +5,10 @@ import 'package:mcglynns_food2go/menu/menuHome.dart';
 import 'package:mcglynns_food2go/EmployeeHome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mcglynns_food2go/User.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 User _currentUser;
+
 class MyHomePage extends StatefulWidget {
   String uid;
   MyHomePage(this.uid);
@@ -24,7 +27,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   _MyHomePageState(var uid) {
     _currentUser = new User(uid);
   }
@@ -45,26 +47,49 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+// this is the URL for the menu website on CSBSJU
+  _launchURL() async {
+    const url = 'https://www.csbsju.edu/menus';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+// displays the button to direct to the nutrition value website and the McGlynns picture
+  Widget _displayButtonAndPicture() {
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          FlatButton(
+              child: Text('Click here to view nutritional value'),
+              color: Colors.red,
+              textColor: Colors.white,
+              padding: EdgeInsets.all(8.0),
+              onPressed: () {
+                _launchURL();
+              })
+          //Space between the button and the picture
+          ,
+          SizedBox(height: 100),
+          // This is the McGlynns picture
+          new Container(
+              child: new Image.asset(
+            'assets/images/mcglynns_logo_redesigned_trnspbkg.png',
+            height: 300,
+            width: 300,
+            fit: BoxFit.fill,
+          ))
+        ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
           backgroundColor: Colors.red, title: new Text('McGlynns Food2Go')),
-
-      body: Center(
-
-          child: Container(
-              child: Image.asset(
-        'assets/images/mcglynns_logo_redesigned_trnspbkg.png',
-        height: 300,
-        width: 300,
-        fit: BoxFit.fill,
-      )
-          )
-
-      ),
-
-
+      body: _displayButtonAndPicture(),
       drawer: new Drawer(
         child: ListView(
           children: <Widget>[

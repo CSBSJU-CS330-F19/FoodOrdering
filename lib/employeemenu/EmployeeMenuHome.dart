@@ -3,19 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcglynns_food2go/CustomCard.dart';
-import 'package:mcglynns_food2go/menu/DeliDaily.dart';
-import 'package:mcglynns_food2go/menu/GrabAndGo.dart';
-import 'package:mcglynns_food2go/menu/GrillDaily.dart';
+import 'package:mcglynns_food2go/employeemenu/EmployeeDeliDaily.dart';
+import 'package:mcglynns_food2go/employeemenu/EmployeeGrabAndGo.dart';
+import 'package:mcglynns_food2go/employeemenu/EmployeeGrillDaily.dart';
 
-import './Beverages.dart';
-import './DailyBakery.dart';
+import './EmployeeBeverages.dart';
+import './EmployeeDailyBakery.dart';
 
-class MenuHome extends StatefulWidget {
+class EmployeeMenuHome extends StatefulWidget {
   @override
-  _MenuHomeState createState() => _MenuHomeState();
+  _EmployeeMenuHomeState createState() => _EmployeeMenuHomeState();
 }
 
-class _MenuHomeState extends State<MenuHome> {
+class _EmployeeMenuHomeState extends State<EmployeeMenuHome> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,15 +33,15 @@ class _MenuHomeState extends State<MenuHome> {
                 Tab(icon: Icon(FontAwesomeIcons.hamburger)),
               ],
             ),
-            title: Text('McGlynns Food2Go'),
+            title: Text('Edit Menu'),
           ),
           body: TabBarView(
             children: [
-              Beverages(),
-              DailyBakery(),
-              DeliDaily(),
-              GrabAndGo(),
-              GrillDaily()
+              EmployeeBeverages(),
+              EmployeeDailyBakery(),
+              EmployeeDeliDaily(),
+              EmployeeGrabAndGo(),
+              EmployeeGrillDaily()
             ],
           ),
         ),
