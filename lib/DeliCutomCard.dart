@@ -41,7 +41,7 @@ class _StateDeliCustomCard extends State<DeliCustomCard>{
                       FlatButton(
                         child: Text('Customize Order'),
                         onPressed: () {
-                          dba.createRecord(myUser.uid, [title], [price]);
+                          //dba.createRecord(myUser.uid, [title], [price]);
 
                           Navigator.push(context, new MaterialPageRoute(
                               builder: (BuildContext context) => new DeliOrder(product: [
